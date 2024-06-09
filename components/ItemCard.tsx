@@ -1,6 +1,8 @@
-
+'use client'
+import React from 'react';
 import { ShoppingCart } from '@blueprintjs/icons';
 import Image from 'next/image'
+import Button from './Button';
 
 interface ItemCardProps {
     key: number;
@@ -12,6 +14,10 @@ interface ItemCardProps {
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({ id, name, brand, description, price }) => {
+
+    const handleBuyClick = () => {
+       
+    };
     
     const formatNumber = (num: string): string  => {
         const parsedNum = parseFloat(num);
@@ -30,8 +36,12 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, name, brand, description, price
     return(
         <div className="bg-white rounded-xl shadow-md w-[260px] flex flex-col">
             <div className='p-3'>
-                <div>
-                    <Image src={``} alt={name} width={150} height={150} />
+                <div className='w-full flex justify-center'>
+                    <Image
+                        src='/assets/images/missing_image.png'
+                        alt={name}
+                        width={150}
+                        height={150} />
                 </div>
                 <div className='flex flex-col justify-between'>
                     <div className='flex flex-nowrap justify-around gap-3 pb-4'>
@@ -47,12 +57,15 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, name, brand, description, price
                     </p>
                 </div>
             </div>
-            <button className='bg-[#0f52ba] w-full rounded-b-xl flex justify-center items-center gap-3 p-2 mt-auto'>
+            <Button 
+                default
+                onClick={() => { handleBuyClick() }}
+            >
                 <ShoppingCart color='white' size={20} />
                 <p className='text-white'>
                     COMPRAR
                 </p>
-            </button>
+            </Button>
         </div>
     )
 }
