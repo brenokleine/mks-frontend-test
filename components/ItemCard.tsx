@@ -5,15 +5,14 @@ import Image from 'next/image'
 import Button from './Button';
 
 interface ItemCardProps {
-    key: number;
     id: number;
-    name: string;
-    brand: string;
+    title: string;
     description: string;
     price: string;
+    image: string;
 }
 
-const ItemCard: React.FC<ItemCardProps> = ({ id, name, brand, description, price }) => {
+const ItemCard: React.FC<ItemCardProps> = ({ id, title, description, price, image }) => {
 
     const handleBuyClick = () => {
        
@@ -36,17 +35,17 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, name, brand, description, price
     return(
         <div className="bg-white rounded-xl shadow-md w-[260px] flex flex-col">
             <div className='p-3'>
-                <div className='w-full flex justify-center'>
+                <div className='w-full flex justify-center p-7'>
                     <Image
-                        src='/assets/images/missing_image.png'
-                        alt={name}
-                        width={150}
-                        height={150} />
+                        src={image ? image : '/assets/images/missing_image.png'}
+                        alt={title}
+                        width={120}
+                        height={120} />
                 </div>
                 <div className='flex flex-col justify-between'>
                     <div className='flex flex-nowrap justify-around gap-3 pb-4'>
                         <h1 className='text-xl flex-1'>
-                            {name}
+                            {title}
                         </h1>
                         <h2 className=' bg-zinc-700 text-white rounded-md p-1 pl-2 pr-2 font-bold self-start'>
                             R${formatNumber(price)}

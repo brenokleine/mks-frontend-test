@@ -7,25 +7,22 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 
 export default function Home() {
   
-  const page = 1;
-  const rows = 5;
-  const sortBy = 'id';
-  const orderBy = 'ASC';
+  const limit = 7;
 
   interface Product {
     id: number;
-    name: string;
-    brand: string;
+    title: string;
     description: string;
     price: string;
+    image: string;
   }
 
   const [data, setData] = React.useState<Product[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   useEffect(() => {
-    fetchProducts(page, rows, sortBy, orderBy)
-      .then(data => {setData(data.products); setIsLoading(false);})
+    fetchProducts(limit)
+      .then(data => {setData(data); setIsLoading(false);})
       .catch(error => console.error(error));
   }, []);
 
@@ -42,10 +39,10 @@ export default function Home() {
             <ItemCard
               key={product.id}
               id={product.id}
-              name={product.name}
-              brand={product.brand}
+              title={product.title}
               description={product.description}
               price={product.price}
+              image={product.image}
             />
           ))}
         </div>

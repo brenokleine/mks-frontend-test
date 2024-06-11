@@ -43,7 +43,11 @@ const Nav: React.FC<NavProps> = () => {
                     <h1 className='text-white text-3xl font-semibold'>
                         Carrinho de compras
                     </h1>
-                    <button className='bg-black text-white' style={{ width: '35px', height: '35px', borderRadius: '50%' }}>
+                    <button 
+                        className='bg-black text-white' 
+                        style={{ width: '35px', height: '35px', borderRadius: '50%' }}
+                        onClick={() => {setCartOpen(false)}}
+                    >
                         X
                     </button>
                 </div>
