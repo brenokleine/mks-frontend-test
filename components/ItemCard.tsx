@@ -3,6 +3,8 @@ import React from 'react';
 import { ShoppingCart } from '@blueprintjs/icons';
 import Image from 'next/image'
 import Button from './Button';
+import { useCart } from '@/contexts/CartContext';
+import { formatNumber } from '@/public/utils/formatNumber';
 
 interface ItemCardProps {
     id: number;
@@ -14,23 +16,20 @@ interface ItemCardProps {
 
 const ItemCard: React.FC<ItemCardProps> = ({ id, title, description, price, image }) => {
 
+    const { cart, addToCart, cartCount, totalAmount } = useCart();
+
     const handleBuyClick = () => {
-       
+        const product = {
+            id,
+            name: title,
+            price: parseFloat(price),
+            amount: 1,
+            image: image
+        };
+
+        addToCart(product);
     };
     
-    const formatNumber = (num: string): string  => {
-        const parsedNum = parseFloat(num);
-
-        if (isNaN(parsedNum)) {
-            throw new TypeError('input should be a number or a string that can be parsed to a number');
-        }
-
-        if (Number.isInteger(parsedNum)) {
-            return parsedNum.toString();
-        } else {
-            return parsedNum.toFixed(2).replace(/\.00$/, '');
-        }
-    }
     
     return(
         <div className="bg-white rounded-xl shadow-md w-[260px] flex flex-col">
