@@ -1,6 +1,7 @@
 // components/LoadingSpinner.tsx
 import React from 'react';
 import { ScaleLoader } from 'react-spinners';
+import { colors } from '@/styles/colors';
 
 interface LoadingSpinnerProps {
     loading: boolean;
@@ -9,7 +10,7 @@ interface LoadingSpinnerProps {
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ loading }) => {
     return (
         <div className="loading-spinner">
-            <ScaleLoader color={"#0f52ba"} loading={loading} />
+            <ScaleLoader color={colors.primary} loading={loading} />
         </div>
     );
 };
