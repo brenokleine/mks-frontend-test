@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { ShoppingCart } from '@blueprintjs/icons';
 import Image from 'next/image'
 import Button from './Button';
@@ -16,7 +16,7 @@ interface ItemCardProps {
 
 const ItemCard: React.FC<ItemCardProps> = ({ id, title, description, price, image }) => {
 
-    const { cart, addToCart, cartCount, totalAmount } = useCart();
+    const { addToCart } = useCart();
 
     const handleBuyClick = () => {
         const product = {
@@ -34,24 +34,27 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, title, description, price, imag
     return(
         <div className="bg-white rounded-xl shadow-md w-[260px] flex flex-col">
             <div className='p-3'>
-                <div className='w-full flex justify-center p-7'>
-                    <Image
-                        src={image ? image : '/assets/images/missing_image.png'}
-                        alt={title}
-                        width={120}
-                        height={120} />
+                <div className='w-full h-[220px] flex justify-center p-7'>
+                    <div className='relative w-full h-full'>
+                        <Image
+                            src={image ? image : '/assets/images/missing_image.png'}
+                            alt={title}
+                            layout="fill"
+                            objectFit="contain"
+                        />
+                    </div>
                 </div>
                 <div className='flex flex-col justify-between'>
                     <div className='flex flex-nowrap justify-around gap-3 pb-4'>
                         <h1 className='text-xl flex-1'>
-                            {title}
+                            {title.length > 40 ? title.slice(0, 40) + '...' : title}
                         </h1>
                         <h2 className=' bg-zinc-700 text-white rounded-md p-1 pl-2 pr-2 font-bold self-start'>
                             R${formatNumber(price)}
                         </h2>
                     </div>
                     <p className='text-sm text-zinc-500 font-light'>
-                        {description}
+                        {description.slice(0, 100) + '...'}
                     </p>
                 </div>
             </div>
