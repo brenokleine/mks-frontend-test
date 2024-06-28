@@ -21,10 +21,10 @@ const Nav: React.FC<NavProps> = () => {
         <div className='w-full bg-primary flex justify-between p-4'>
             <div className='flex justify-center items-center gap-2 ml-6'>
                 <h1 className='text-white text-2xl font-medium'>
-                    MKS
+                    Bernstein
                 </h1>
                 <h2 className='text-white text-md font-thin'>
-                    Sistemas
+                    &Co.
                 </h2>
             </div>
             <div className='flex justify-center items-center gap-4'>

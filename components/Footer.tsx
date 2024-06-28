@@ -6,7 +6,7 @@ type FooterProps = {};
 const Footer: React.FC<FooterProps> = () => {
     return (
         <div className='mt-auto w-full bg-[#eeeeee] flex justify-center p-1 text-xs'>
-            MKS Sistemas © Todos os direitos reservados
+            Bernstein & Co. © Todos os direitos reservados
         </div>
     );
 }
