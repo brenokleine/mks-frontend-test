@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Button from './Button';
 import { useCart } from '@/contexts/CartContext';
 import { formatNumber } from '@/public/utils/formatNumber';
+import { Alert, Snackbar } from '@mui/material';
 
 interface ItemCardProps {
     id: number;
@@ -30,6 +31,19 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, title, description, price, imag
 
         addToCart(product);
     };
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleClose = () => {
+        setIsOpen(false);
+        
+    }
+
+    const handleOpen = () => {
+        setIsOpen(true);
+    }
+
+
     
     
     return(
@@ -61,13 +75,28 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, title, description, price, imag
             </div>
             <Button 
                 default
-                onClick={() => { handleBuyClick() }}
+                onClick={() => { handleBuyClick(); handleOpen(); }}
             >
                 <ShoppingCart color='white' size={20} />
                 <p className='text-white'>
                     COMPRAR
                 </p>
             </Button>
+            <Snackbar
+                open={isOpen}
+                autoHideDuration={4000}
+                onClose={handleClose}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert
+                    onClose={handleClose}
+                    severity="success"
+                    variant="filled"
+                    sx={{ width: '100%', color: 'white'}}
+                >
+                    Item adicionado ao carrinho!
+                </Alert>
+            </Snackbar>
         </div>
     )
 }
