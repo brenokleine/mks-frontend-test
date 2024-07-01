@@ -12,6 +12,7 @@ interface ItemTileProps {
         price: number;
         amount: number;
         image: string;
+        description: string;
     };
 }
 
@@ -29,16 +30,26 @@ const ItemTile: React.FC<ItemTileProps> = ({ product }) => {
                 />
             </div>
             <div className='flex gap-3 justify-between'>
-                <p className='text-lg w-2/3 font-semibold'>
-                    {product.name}
-                </p>
-                <Image
-                    src={product.image ? product.image : '/assets/images/missing_image.png'}
-                    alt={product.name}
-                    width={65}
-                    height={65}
-                    className='mr-2'
-                />
+                <div className='w-2/3'>
+                    <p className='text-lg font-semibold'>
+                        {product.name.length > 50 ? 
+                            product.name.slice(0, 50) + '...'
+                            :
+                            product.name
+                        }
+                    </p>
+                    <p className='text-sm text-zinc-500 font-light'>
+                        {product.description.slice(0, 80) + '...'}
+                    </p>
+                </div>
+                <div className='p-1 flex justify-center items-center'>
+                    <Image
+                        src={product.image ? product.image : '/assets/images/missing_image.png'}
+                        alt={product.name}
+                        width={75}
+                        height={75}
+                    />
+                </div>
             </div>
             <div className='flex items-center justify-between'>
                 <p className='text-md bg-zinc-700 text-white rounded-md p-1 pl-2 pr-2 font-bold self-start'>

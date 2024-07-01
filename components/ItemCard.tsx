@@ -24,7 +24,8 @@ const ItemCard: React.FC<ItemCardProps> = ({ id, title, description, price, imag
             name: title,
             price: parseFloat(price),
             amount: 1,
-            image: image
+            image: image,
+            description: description
         };
 
         addToCart(product);
